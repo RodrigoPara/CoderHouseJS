@@ -1,12 +1,45 @@
-let producto = prompt("Ingrese producto: ");
-let cantidadProducto = prompt("Ingrese cantidad Producto - Minimo 3 : ");
+let precio, continuaCompra, total, mensaje;
+const envio = 400;
+let compras = [];
 
-while (producto != "" && cantidadProducto != "") {
-    if (cantidadProducto > 3) {
-        alert("Usted agrego acaba de agregar el producto : " +producto+ "\nCantidad: "+cantidadProducto);        
-        break;
-    }else{
-        cantidadProducto = prompt("Vuelva a ingresar cantidad, minimo 3 : ");
-    }
-}
-alert("No ingreso ningun producto ni cantidad");
+do {
+  producto = prompt(
+    'Buenos días! Qué desea comprar?\nMonstruo, Carpa o Marioneta'
+  );
+  switch (producto) {
+    case 'Monstruo':
+      cantidad = prompt('Ingrese cantidad');
+      precio = 4000;
+      compras.push({
+        producto,
+        precio: precio * cantidad + envio,
+      });
+      break;
+    case 'Carpa':
+      cantidad = prompt('Ingrese cantidad');
+      precio = 8000;
+      compras.push({
+        producto,
+        precio: precio * cantidad + envio,
+      });
+      break;
+    case 'Marioneta':
+      cantidad = prompt('Ingrese cantidad');
+      precio = 2000;
+      compras.push({
+        producto,
+        precio: precio * cantidad + envio,
+      });
+      break;
+    default:
+      alert('Este producto no existe');
+  }
+
+  continuaCompra = confirm('Desea comprar algo más?');
+} while (continuaCompra);
+
+compras.forEach((compra) => {
+  mensaje += `Producto: ${compra.producto}, Precio: ${compra.precio} \n`;
+});
+
+alert(mensaje);
